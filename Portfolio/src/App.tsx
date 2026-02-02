@@ -97,7 +97,7 @@ function App() {
                 Hi, I'm <span className="gradient-text">Khalid Bin Selim!</span>
               </h1>
               <p className="hero-subtitle">
-                University Innovation Hub Program Winner | NASA Space Apps Challenge, Solvio AI Hackathon Finalist | IEEE Publication |  Full-Stack Developer | AI/ML Enthusiast | Competitive Programmer
+                University Innovation Hub Program Winner | NASA Space Apps Challenge, Solvio AI Hackathon Finalist | Full-Stack Developer | AI/ML Researcher | Competitive Programmer
               </p>
               <p className="hero-description">
                 BSc (Engr.) in CSE at Shahjalal University of Science and Technology
