@@ -542,9 +542,9 @@ function App() {
             </div>
           </div>
           
-          <div className="footer-bottom">
-            <p>© 2025 Khalid Bin Selim. All rights reserved.</p>
-            <p className="made-with">Made with Vite and React</p>
+          <div className="footer-bottom align-center">
+            <p className="align-center">© 2026 Khalid Bin Selim. All rights reserved.</p>
+            <p className="made-with">Made by Khalid Bin Selim.</p>
           </div>
         </div>
       </footer>
