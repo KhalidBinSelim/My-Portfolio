@@ -1,0 +1,94 @@
+/* Scroll Progress Bar */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(30, 30, 46, 0.8);
+  z-index: 9999;
+  backdrop-filter: blur(10px);
+}
+
+.scroll-progress-fill {
+  height: 100%;
+  background: var(--gradient-vibrant);
+  transition: width 0.1s ease;
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.6);
+}
+
+/* Scroll Down Indicator */
+.scroll-down-indicator {
+  position: fixed;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 100;
+  animation: fadeInUp 1s ease-out 1s both;
+}
+
+.scroll-down-indicator p {
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.scroll-mouse {
+  width: 30px;
+  height: 50px;
+  border: 2px solid var(--color-primary);
+  border-radius: 20px;
+  position: relative;
+  animation: float 3s ease-in-out infinite;
+}
+
+.scroll-wheel {
+  width: 4px;
+  height: 10px;
+  background: var(--gradient-vibrant);
+  border-radius: 2px;
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: scrollWheel 2s ease-in-out infinite;
+}
+
+@keyframes scrollWheel {
+  0%, 100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateX(-50%) translateY(15px);
+  }
+}
+
+.scroll-arrow {
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+/* Hide on mobile */
+@media (max-width: 768px) {
+  .scroll-down-indicator {
+    display: none;
+  }
+}

@@ -1,0 +1,27 @@
+import { useEffect } from 'react'
+import './App.css'
+import CertificateGallery from './components/CertificateGallery'
+import StatsCounter from './components/StatsCounter'
+import ScrollIndicator from './components/ScrollIndicator'
+
+function App() {
+  // Scroll reveal animation
+  useEffect(() => {
+    const revealElements = document.querySelectorAll('.reveal');
+    
+    const revealOnScroll = () => {
+      revealElements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < window.innerHeight - elementVisible) {
+          element.classList.add('active');
+        }
+      });
+    };
+    
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll(); // Initial check
+    
+    return () => window.removeEventListener('scroll', revealOnScroll);
+  }, []);
