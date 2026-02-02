@@ -457,17 +457,12 @@ function App() {
             
             {/* Contact Form */}
             <div className="contact-form-wrapper animate-fade-in-right">
-              <form className="contact-form" onSubmit={(e) => {
-                e.preventDefault();
-                const formData = new FormData(e.currentTarget);
-                const name = formData.get('name') as string;
-                const email = formData.get('email') as string;
-                const subject = formData.get('subject') as string || 'Contact from Portfolio';
-                const message = formData.get('message') as string;
+              <form className="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
+                <input type="hidden" name="subject" value="New Contact from Portfolio Website" />
+                <input type="hidden" name="from_name" value="Portfolio Contact Form" />
+                <input type="hidden" name="redirect" value="https://web3forms.com/success" />
                 
-                const mailtoLink = `mailto:khalidbinselim@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`From: ${name}\nEmail: ${email}\n\n${message}`)}`;
-                window.location.href = mailtoLink;
-              }}>
                 <div className="form-group">
                   <label htmlFor="name">Your Name</label>
                   <input type="text" id="name" name="name" placeholder="Name" required />
@@ -479,8 +474,8 @@ function App() {
                 </div>
                 
                 <div className="form-group">
-                  <label htmlFor="subject">Subject</label>
-                  <input type="text" id="subject" name="subject" placeholder="Project Collaboration" />
+                  <label htmlFor="subject_line">Subject</label>
+                  <input type="text" id="subject_line" name="subject_line" placeholder="Project Collaboration" />
                 </div>
                 
                 <div className="form-group">
