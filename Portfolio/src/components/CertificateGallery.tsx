@@ -19,9 +19,18 @@ interface Certificate {
 }
 
 const certificates: Certificate[] = [
-  // September 2025
+  // February 2026
   {
     id: 1,
+    title: 'IEEE OPAIN 2026 - Paper Accepted',
+    category: 'Research',
+    image: '/certificates/Acceptance of Intensity Classification of Bengali Hate Speech Paper.png',
+    description: 'A Transformer-Based Approach for Intensity Classification of Bengali Hate Speech - Paper ID: 3762',
+    date: 'February 2026'
+  },
+  // September 2025
+  {
+    id: 2,
     title: 'IEEE COMPAS 2025 - Paper Accepted',
     category: 'Research',
     image: compas2025Paper,
@@ -30,7 +39,7 @@ const certificates: Certificate[] = [
   },
   // April 2025
   {
-    id: 2,
+    id: 3,
     title: 'Learnathon 3.0 by Geeky Solutions',
     category: 'Hackathons',
     image: '/certificates/Learnathon 3.0 Certificate.png',
@@ -39,7 +48,7 @@ const certificates: Certificate[] = [
   },
   // January 2025
   {
-    id: 3,
+    id: 4,
     title: 'CUET CSE Fest 2025 - Datathon',
     category: 'Datathons',
     image: cuetDatathon,
@@ -47,7 +56,7 @@ const certificates: Certificate[] = [
     date: 'January 2025'
   },
   {
-    id: 4,
+    id: 5,
     title: 'SOLVIO AI Hackathon 2025 - Top 20 Finalist',
     category: 'Hackathons',
     image: '/certificates/SOLVIO_Top20_Certificate_Team_84.png',
@@ -55,7 +64,7 @@ const certificates: Certificate[] = [
     date: 'January 2026'
   },
   {
-    id: 5,
+    id: 6,
     title: 'EricssonEdge Academia Program 2025',
     category: 'Awards',
     image: ericssonEdge,
@@ -64,7 +73,7 @@ const certificates: Certificate[] = [
   },
   // December 2024
   {
-    id: 6,
+    id: 7,
     title: 'BITFEST 2025 - Game of Datathon',
     category: 'Datathons',
     image: bitfest2025,
@@ -73,7 +82,7 @@ const certificates: Certificate[] = [
   },
   // October 2024
   {
-    id: 7,
+    id: 8,
     title: 'NASA Space Apps Challenge 2024 - Galactic Problem Solver',
     category: 'Hackathons',
     image: nasaSpaceApps2024,
@@ -82,7 +91,7 @@ const certificates: Certificate[] = [
   },
   // 2024
   {
-    id: 8,
+    id: 9,
     title: 'University Innovation Hub Program',
     category: 'Awards',
     image: '/certificates/University Innovation Hub Program.jpg',
@@ -91,7 +100,7 @@ const certificates: Certificate[] = [
   },
   // October 2023
   {
-    id: 9,
+    id: 10,
     title: 'ICPC Asia Dhaka Regional 2023 - Honorable Mention',
     category: 'Awards',
     image: icpc2023Cert,
@@ -99,7 +108,7 @@ const certificates: Certificate[] = [
     date: 'October 2023'
   },
   {
-    id: 10,
+    id: 11,
     title: 'NASA Space Apps Challenge 2023',
     category: 'Hackathons',
     image: '/certificates/NASA Space Apps Challenge 2023.png',

@@ -3,6 +3,8 @@ import './App.css'
 import CertificateGallery from './components/CertificateGallery'
 // import StatsCounter from './components/StatsCounter'
 import ProblemSolvingStats from './components/ProblemSolvingStats'
+import SkillsSection from './components/SkillsSection'
+import TypingAnimation from './components/TypingAnimation'
 import robosustLogo from './assets/robosust-logo.png'
 import copernicusLogo from './assets/copernicus-logo.png'
 
@@ -93,17 +95,29 @@ function App() {
 
             {/* Hero Content */}
             <div className="hero-content animate-fade-in-right">
-              <h1 className="hero-title">
+              <h2 className="hero-title">
                 Hi, I'm <span className="gradient-text">Khalid Bin Selim!</span>
-              </h1>
+              </h2>
               <p className="hero-subtitle">
-                University Innovation Hub Program Winner | NASA Space Apps Challenge, Solvio AI Hackathon Finalist | Full-Stack Developer | AI/ML Researcher | Competitive Programmer
+                <TypingAnimation 
+                  texts={[
+                    'University Innovation Hub Program Winner',
+                    'NASA Space Apps Challenge Finalist',
+                    'Solvio AI Hackathon Finalist',
+                    'Full-Stack Developer',
+                    'AI/ML Researcher',
+                    'Competitive Programmer'
+                  ]}
+                  typingSpeed={60}
+                  deletingSpeed={40}
+                  pauseDuration={2500}
+                />
               </p>
-              <p className="hero-description">
+              <h1 className="hero-description">
                 BSc (Engr.) in CSE at Shahjalal University of Science and Technology
                 <br />
                 {/* <strong>CGPA: 3.72/4.00</strong> | Expected Graduation: May 2026 */}
-              </p>
+              </h1>
               
               <div className="hero-links">
                 <a href="tel:+8801721998383" className="btn btn-primary">
@@ -233,7 +247,7 @@ function App() {
           <div className="projects-grid">
             <div className="project-card card animate-fade-in-up">
               <div className="project-header">
-                <h3>SUSTverse - Campus Platform</h3>
+                <h3>SUSTverse</h3>
                 <a href="https://github.com/KhalidBinSelim/SUSTverse" target="_blank" rel="noopener noreferrer" className="github-link">
                   <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
                     <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
@@ -260,7 +274,7 @@ function App() {
 
             <div className="project-card card animate-fade-in-up" style={{animationDelay: '0.1s'}}>
               <div className="project-header">
-                <h3>CoSeismic - Seismic Analysis</h3>
+                <h3>CoSeismic</h3>
                 <a href="https://github.com/KhalidBinSelim/CoSeismic" target="_blank" rel="noopener noreferrer" className="github-link">
                   <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
                     <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
@@ -287,7 +301,7 @@ function App() {
 
             <div className="project-card card animate-fade-in-up" style={{animationDelay: '0.2s'}}>
               <div className="project-header">
-                <h3>Traffic Violation Detection</h3>
+                <h3>Traffic Rule Violation Detection System</h3>
                 <a href="https://github.com/KhalidBinSelim/Traffic-Rule-Violation-Detection-System" target="_blank" rel="noopener noreferrer" className="github-link">
                   <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
                     <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
@@ -309,67 +323,39 @@ function App() {
                 <li><strong>35% faster</strong> response speed</li>
               </ul>
             </div>
+
+            <div className="project-card card animate-fade-in-up" style={{animationDelay: '0.3s'}}>
+              <div className="project-header">
+                <h3>SportsUnity - Campus Sports Management App</h3>
+                <a href="https://github.com/KhalidBinSelim/SportsUnity" target="_blank" rel="noopener noreferrer" className="github-link">
+                  <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                  </svg>
+                </a>
+              </div>
+              <p className="project-date">February 2024</p>
+              <p className="project-description">
+                <strong>Kotlin-based</strong> Android campus sports management app allowing users to explore and interact with sports content.
+              </p>
+              <div className="tech-stack">
+                <span className="badge">Kotlin</span>
+                <span className="badge">Android</span>
+                <span className="badge">MVVM</span>
+                <span className="badge">Gradle</span>
+                <span className="badge">Jetpack Compose</span>
+              </div>
+              <ul className="project-highlights">
+                <li><strong>35% increase</strong> in user engagement</li>
+                <li><strong>25% reduction</strong> in load times</li>
+                <li><strong>Modular MVVM</strong> architecture for maintainability</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="section">
-        <div className="container">
-          <h2 className="section-title">Technical Skills</h2>
-          <div className="skills-grid">
-            <div className="skill-category card animate-fade-in-up">
-              <h3>Languages</h3>
-              <div className="skill-tags">
-                <span className="badge">Java</span>
-                <span className="badge">C</span>
-                <span className="badge">C++</span>
-                <span className="badge">Python</span>
-                <span className="badge">JavaScript</span>
-                <span className="badge">Assembly</span>
-              </div>
-            </div>
-
-            <div className="skill-category card animate-fade-in-up" style={{animationDelay: '0.1s'}}>
-              <h3>Frameworks & Libraries</h3>
-              <div className="skill-tags">
-                <span className="badge">NumPy</span>
-                <span className="badge">Pandas</span>
-                <span className="badge">Matplotlib</span>
-                <span className="badge">React</span>
-                <span className="badge">Next.js</span>
-                <span className="badge">Node.js</span>
-                <span className="badge">Express</span>
-              </div>
-            </div>
-
-            <div className="skill-category card animate-fade-in-up" style={{animationDelay: '0.2s'}}>
-              <h3>Databases & Tools</h3>
-              <div className="skill-tags">
-                <span className="badge">Git</span>
-                <span className="badge">GitHub</span>
-                <span className="badge">Docker</span>
-                <span className="badge">MySQL</span>
-                <span className="badge">PostgreSQL</span>
-                <span className="badge">MongoDB</span>
-                <span className="badge">Jira</span>
-                <span className="badge">LaTeX</span>
-              </div>
-            </div>
-
-            <div className="skill-category card animate-fade-in-up" style={{animationDelay: '0.3s'}}>
-              <h3>Platforms & Concepts</h3>
-              <div className="skill-tags">
-                <span className="badge">Object-Oriented Programming</span>
-                <span className="badge">Software Engineering Principles</span>
-                <span className="badge">Kaggle</span>
-                <span className="badge">Arduino</span>
-                <span className="badge">Android Studio</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <SkillsSection />
 
       {/* Organizations Section */}
       <section className="section">
