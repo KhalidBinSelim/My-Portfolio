@@ -107,6 +107,25 @@ const platforms: Platform[] = [
   }
 ];
 
+interface LeetCodeStats {
+  totalSolved: number;
+  totalQuestions: number;
+  easySolved: number;
+  totalEasy: number;
+  mediumSolved: number;
+  totalMedium: number;
+  hardSolved: number;
+  totalHard: number;
+  ranking: number;
+}
+
+interface LeetCodeBadge {
+  id: string;
+  name: string;
+  icon: string;
+  creationDate: string;
+}
+
 
 // LeetCode rating history (sample data for visualization)
 const leetcodeRatingHistory = [
@@ -255,11 +274,11 @@ const RatingGraph = () => {
   );
 };
 
-const PieChart = () => {
-  const total = platforms.reduce((sum, p) => sum + p.problems, 0);
+const PieChart = ({ platformsData }: { platformsData: typeof platforms }) => {
+  const total = platformsData.reduce((sum, p) => sum + p.problems, 0);
   let currentAngle = 0;
 
-  const segments = platforms.map((platform, i) => {
+  const segments = platformsData.map((platform, i) => {
     const percentage = (platform.problems / total) * 100;
     const angle = (platform.problems / total) * 360;
     const startAngle = currentAngle;
@@ -311,6 +330,67 @@ const PieChart = () => {
 };
 
 const ProblemSolvingStats = () => {
+  const [leetcodeStats, setLeetcodeStats] = useState<LeetCodeStats | null>(null);
+  const [leetcodeBadges, setLeetcodeBadges] = useState<LeetCodeBadge[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Fetch General Stats
+    fetch('https://leetcode-api-faisalshohag.vercel.app/Shadow0fTwilight')
+      .then(res => res.json())
+      .then((data: LeetCodeStats) => {
+        setLeetcodeStats(data);
+        setIsLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching LeetCode stats:', error);
+        setIsLoading(false);
+      });
+
+    // Fetch Badges via GraphQL
+    fetch('https://corsproxy.io/?https://leetcode.com/graphql', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: `
+          query userBadges($username: String!) {
+            matchedUser(username: $username) {
+              badges {
+                id
+                name
+                icon
+                creationDate
+              }
+            }
+          }
+        `,
+        variables: { username: 'Shadow0fTwilight' }
+      })
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data?.data?.matchedUser?.badges) {
+            setLeetcodeBadges(data.data.matchedUser.badges);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching LeetCode badges:', error);
+      });
+  }, []);
+
+  // Update platforms data with live LeetCode stats if available
+  const dynamicPlatforms = platforms.map(p => {
+    if (p.name === 'LeetCode' && leetcodeStats) {
+      return { ...p, problems: leetcodeStats.totalSolved };
+    }
+    return p;
+  });
+
+  const leetcodeTotalSolved = leetcodeStats?.totalSolved || 173;
+  const leetcodeRanking = leetcodeStats?.ranking || 210262;
+
   return (
     <section id="problem-solving" className="problem-solving-section section">
       <div className="container">
@@ -332,7 +412,9 @@ const ProblemSolvingStats = () => {
                   <div className="leetcode-title-group">
                     <div className="rating-header-row">
                       <span className="rating-label-sm">Contest Rating</span>
-                      <span className="global-ranking">Global Ranking <strong>210,262</strong>/822,246</span>
+                      <span className="global-ranking">
+                        Global Ranking <strong>{isLoading ? '...' : leetcodeRanking.toLocaleString()}</strong>/822,246
+                      </span>
                       <span className="attended">Attended <strong>4</strong></span>
                     </div>
                     <span className="rating-value-large">{platforms[0].rating}</span>
@@ -365,12 +447,14 @@ const ProblemSolvingStats = () => {
                   <svg viewBox="0 0 100 100" className="donut-chart">
                     <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="8" />
                     <circle cx="50" cy="50" r="40" fill="none" stroke="#00B8A3" strokeWidth="8" 
-                      strokeDasharray="251.2" strokeDashoffset={251.2 - (173/3830) * 251.2}
+                      strokeDasharray="251.2" strokeDashoffset={251.2 - (leetcodeTotalSolved/(leetcodeStats?.totalQuestions || 3830)) * 251.2}
                       transform="rotate(-90 50 50)" className="donut-progress" />
                   </svg>
                   <div className="donut-center">
-                    <span className="solved-count"><AnimatedCounter target={173} /></span>
-                    <span className="solved-total">/3830</span>
+                    <span className="solved-count">
+                      {isLoading ? '...' : <AnimatedCounter target={leetcodeTotalSolved} />}
+                    </span>
+                    <span className="solved-total">/{leetcodeStats?.totalQuestions || 3830}</span>
                     <span className="solved-label">✓ Solved</span>
                   </div>
                 </div>
@@ -380,15 +464,21 @@ const ProblemSolvingStats = () => {
               <div className="difficulty-breakdown">
                 <div className="difficulty-item easy">
                   <span className="diff-label">Easy</span>
-                  <span className="diff-value">78/924</span>
+                  <span className="diff-value">
+                    {isLoading ? '...' : `${leetcodeStats?.easySolved || 78}/${leetcodeStats?.totalEasy || 924}`}
+                  </span>
                 </div>
                 <div className="difficulty-item medium">
                   <span className="diff-label">Med.</span>
-                  <span className="diff-value">83/2001</span>
+                  <span className="diff-value">
+                    {isLoading ? '...' : `${leetcodeStats?.mediumSolved || 83}/${leetcodeStats?.totalMedium || 2001}`}
+                  </span>
                 </div>
                 <div className="difficulty-item hard">
                   <span className="diff-label">Hard</span>
-                  <span className="diff-value">12/905</span>
+                  <span className="diff-value">
+                    {isLoading ? '...' : `${leetcodeStats?.hardSolved || 12}/${leetcodeStats?.totalHard || 905}`}
+                  </span>
                 </div>
               </div>
               
@@ -397,10 +487,27 @@ const ProblemSolvingStats = () => {
                   <span className="badges-title">Badges</span>
                   <span className="badges-arrow">→</span>
                 </div>
-                <span className="badges-count">1</span>
-                <img src={leetcodeBadge} alt="50 Days Badge" className="badge-gif" />
-                <span className="badge-label">Most Recent Badge</span>
-                <span className="badge-name">50 Days Badge 2025</span>
+                <span className="badges-count">{leetcodeBadges.length || 0}</span>
+                <div className="badges-scroll-container">
+                  {leetcodeBadges.length > 0 ? (
+                    leetcodeBadges.map((badge) => (
+                      <div key={badge.id} className="badge-item">
+                        <img 
+                          src={badge.icon.startsWith('/') ? `https://leetcode.com${badge.icon}` : badge.icon} 
+                          alt={badge.name} 
+                          className="badge-gif" 
+                          title={badge.name}
+                        />
+                      </div>
+                    ))
+                  ) : (
+                    <>
+                      <img src={leetcodeBadge} alt="50 Days Badge" className="badge-gif" />
+                      <span className="badge-label">Most Recent Badge</span>
+                      <span className="badge-name">50 Days Badge 2025</span>
+                    </>
+                  )}
+                </div>
               </div>
             </div>
             
@@ -448,7 +555,7 @@ const ProblemSolvingStats = () => {
         <div className="charts-row">
           <div className="chart-card">
             <h3 className="chart-title">Total Problems by Platform</h3>
-            <PieChart />
+            <PieChart platformsData={dynamicPlatforms} />
           </div>
           
           <div className="chart-card bar-chart-card">
@@ -457,12 +564,15 @@ const ProblemSolvingStats = () => {
               {/* Combined platforms for bar chart - merging Codeforces accounts */}
               {[
                 { name: 'Codeforces', problems: 883, color: '#1F8ACB', Logo: CodeforcesLogo },
-                { name: 'LeetCode', problems: 173, color: '#FFA116', Logo: LeetCodeLogo },
+                { name: 'LeetCode', problems: leetcodeTotalSolved, color: '#FFA116', Logo: LeetCodeLogo },
                 { name: 'VJudge', problems: 152, color: '#4CAF50', Logo: VJudgeLogo },
                 { name: 'CodeChef', problems: 106, color: '#5B4638', Logo: CodeChefLogo },
                 { name: 'AtCoder', problems: 44, color: '#222222', Logo: AtCoderLogo },
                 { name: 'LightOJ', problems: 26, color: '#FF5722', Logo: LightOJLogo },
-              ].map((platform, i) => (
+              ].map((platform, i) => {
+                // Dynamically calculate the highest value for scaling
+                const maxProblems = Math.max(883, leetcodeTotalSolved);
+                return (
                 <div key={i} className="bar-item" style={{ animationDelay: `${i * 0.1}s` }}>
                   <div className="bar-info">
                     <span className="bar-icon" style={{ color: platform.color }}>{<platform.Logo />}</span>
@@ -472,21 +582,21 @@ const ProblemSolvingStats = () => {
                     <div 
                       className="bar-fill" 
                       style={{ 
-                        width: `${(platform.problems / 883) * 100}%`,
+                        width: `${(platform.problems / maxProblems) * 100}%`,
                         background: platform.color 
                       }}
                     ></div>
                   </div>
                   <span className="bar-value">{platform.problems}</span>
                 </div>
-              ))}
+              )})}
             </div>
           </div>
         </div>
 
         {/* Platform Cards Grid */}
         <div className="platforms-grid">
-          {platforms.slice(1).map((platform, i) => (
+          {dynamicPlatforms.slice(1).map((platform, i) => (
             <a
               key={i}
               href={platform.url}

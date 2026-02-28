@@ -4,6 +4,7 @@ import CertificateGallery from './components/CertificateGallery'
 // import StatsCounter from './components/StatsCounter'
 import ProblemSolvingStats from './components/ProblemSolvingStats'
 import SkillsSection from './components/SkillsSection'
+import EducationSection from './components/EducationSection'
 import TypingAnimation from './components/TypingAnimation'
 import robosustLogo from './assets/robosust-logo.png'
 import copernicusLogo from './assets/copernicus-logo.png'
@@ -74,6 +75,7 @@ function App() {
             <li><a onClick={() => scrollToSection('achievements')}>Achievements</a></li>
             <li><a onClick={() => scrollToSection('projects')}>Projects</a></li>
             <li><a onClick={() => scrollToSection('skills')}>Skills</a></li>
+            <li><a onClick={() => scrollToSection('education')}>Education</a></li>
             <li><a onClick={() => scrollToSection('contact')} className="nav-cta">Contact</a></li>
           </ul>
         </div>
@@ -356,6 +358,9 @@ function App() {
 
       {/* Skills Section */}
       <SkillsSection />
+
+      {/* Education Section */}
+      <EducationSection />
 
       {/* Organizations Section */}
       <section className="section">
