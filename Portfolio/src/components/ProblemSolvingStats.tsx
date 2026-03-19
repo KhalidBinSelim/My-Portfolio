@@ -521,34 +521,35 @@ const ProblemSolvingStats = () => {
                 </div>
               </div>
               <div className="heatmap-grid">
-                {Array.from({ length: 52 }, (_, weekIdx) => (
+                {/* Hardcoded heatmap data: 52 weeks × 7 days, 0=empty, 1=faint, 2=medium, 3=bright */}
+                {[
+                  /* Mar  */ [0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],
+                  /* Apr  */ [0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],
+                  /* May  */ [0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],
+                  /* Jun  */ [0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],
+                  /* Jul  */ [0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],
+                  /* Aug  */ [0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,1,0,0,0],[0,0,1,0,0,1,0],
+                  /* Sep  */ [0,2,1,2,0,0,1],[1,0,2,1,2,0,0],[0,1,0,2,3,1,0],[2,0,1,0,1,2,0],
+                  /* Oct  */ [3,2,3,3,2,3,2],[3,3,2,3,3,2,3],[2,3,3,3,2,3,3],[3,2,3,2,3,3,2],[3,3,3,2,3,2,3],
+                  /* Nov  */ [3,3,2,3,3,3,2],[2,3,3,3,2,3,3],[3,2,3,3,3,2,3],[3,3,2,3,3,3,2],
+                  /* Dec  */ [2,1,2,3,0,2,1],[0,2,1,0,2,3,2],[1,0,2,1,0,2,1],[2,1,0,2,1,0,2],
+                  /* Jan  */ [3,2,3,3,2,3,2],[3,3,2,3,3,2,3],[2,3,3,2,3,3,2],[3,2,3,3,2,3,3],[3,3,2,3,2,3,2],
+                  /* Feb  */ [2,3,3,2,3,2,3],[3,2,3,3,2,3,2],[3,3,2,3,3,2,3],[2,3,2,3,3,2,3],
+                  /* Mar  */ [3,2,1,2,3,1,0],
+                ].map((week, weekIdx) => (
                   <div key={weekIdx} className="heatmap-week">
-                    {Array.from({ length: 7 }, (_, dayIdx) => {
-                      // Pattern: sparse early months, heavy activity from ~week 26 onwards (Sep-Mar)
-                      let intensity = 0;
-                      if (weekIdx >= 26) {
-                        intensity = Math.random() * 0.7 + 0.3;
-                      } else if (weekIdx >= 20) {
-                        intensity = Math.random() * 0.4;
-                      } else if (weekIdx >= 10) {
-                        intensity = Math.random() * 0.15;
-                      }
-                      // Add some scattered activity in earlier weeks
-                      if (weekIdx < 10 && Math.random() > 0.85) intensity = 0.15;
-                      return (
-                        <div 
-                          key={dayIdx} 
-                          className="heatmap-day"
-                          style={{ 
-                            background: intensity > 0.7 ? '#39d353' : 
-                                       intensity > 0.4 ? '#26a641' : 
-                                       intensity > 0.15 ? '#006d32' : 
-                                       intensity > 0.05 ? '#0e4429' :
-                                       'rgba(255,255,255,0.05)'
-                          }}
-                        />
-                      );
-                    })}
+                    {week.map((level, dayIdx) => (
+                      <div 
+                        key={dayIdx} 
+                        className="heatmap-day"
+                        style={{ 
+                          background: level === 3 ? '#39d353' : 
+                                     level === 2 ? '#26a641' : 
+                                     level === 1 ? '#006d32' : 
+                                     'rgba(255,255,255,0.05)'
+                        }}
+                      />
+                    ))}
                   </div>
                 ))}
               </div>
