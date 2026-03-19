@@ -413,7 +413,7 @@ const ProblemSolvingStats = () => {
                     <div className="rating-header-row">
                       <span className="rating-label-sm">Contest Rating</span>
                       <span className="global-ranking">
-                        Global Ranking <strong>{isLoading ? '...' : leetcodeRanking.toLocaleString()}</strong>/822,246
+                        Global Ranking <strong>{isLoading ? '...' : leetcodeRanking.toLocaleString()}</strong>/850,439
                       </span>
                       <span className="attended">Attended <strong>4</strong></span>
                     </div>
@@ -427,7 +427,7 @@ const ProblemSolvingStats = () => {
               
               <div className="leetcode-top-percentage">
                 <span className="top-label">Top</span>
-                <span className="top-value">25.97% WorldWide</span>
+                <span className="top-value">26.06%</span>
                 <div className="top-bar-chart">
                   {[3, 4, 5, 6, 8, 7, 9, 12, 15, 18, 20, 22, 25, 28, 30, 28, 25, 22, 18, 15, 12, 9, 7, 5].map((h, i) => (
                     <div 
@@ -458,7 +458,7 @@ const ProblemSolvingStats = () => {
                     <span className="solved-label">✓ Solved</span>
                   </div>
                 </div>
-                <span className="attempting-text">1 Attempting</span>
+                <span className="attempting-text">2 Attempting</span>
               </div>
               
               <div className="difficulty-breakdown">
@@ -504,7 +504,7 @@ const ProblemSolvingStats = () => {
                     <>
                       <img src={leetcodeBadge} alt="50 Days Badge" className="badge-gif" />
                       <span className="badge-label">Most Recent Badge</span>
-                      <span className="badge-name">50 Days Badge 2025</span>
+                      <span className="badge-name">50 Days Badge 2026</span>
                     </>
                   )}
                 </div>
@@ -514,9 +514,9 @@ const ProblemSolvingStats = () => {
             {/* Bottom Row: Submission Heatmap */}
             <div className="leetcode-bottom-row">
               <div className="submissions-header">
-                <span className="submissions-count"><strong>471</strong> submissions in the past one year</span>
+                <span className="submissions-count"><strong>702</strong> submissions in the past one year</span>
                 <div className="activity-stats">
-                  <span>Total active days: <strong>117</strong></span>
+                  <span>Total active days: <strong>162</strong></span>
                   <span>Max streak: <strong>65</strong></span>
                 </div>
               </div>
@@ -524,7 +524,17 @@ const ProblemSolvingStats = () => {
                 {Array.from({ length: 52 }, (_, weekIdx) => (
                   <div key={weekIdx} className="heatmap-week">
                     {Array.from({ length: 7 }, (_, dayIdx) => {
-                      const intensity = weekIdx > 30 ? Math.random() : weekIdx > 20 ? Math.random() * 0.3 : 0;
+                      // Pattern: sparse early months, heavy activity from ~week 26 onwards (Sep-Mar)
+                      let intensity = 0;
+                      if (weekIdx >= 26) {
+                        intensity = Math.random() * 0.7 + 0.3;
+                      } else if (weekIdx >= 20) {
+                        intensity = Math.random() * 0.4;
+                      } else if (weekIdx >= 10) {
+                        intensity = Math.random() * 0.15;
+                      }
+                      // Add some scattered activity in earlier weeks
+                      if (weekIdx < 10 && Math.random() > 0.85) intensity = 0.15;
                       return (
                         <div 
                           key={dayIdx} 
@@ -532,7 +542,8 @@ const ProblemSolvingStats = () => {
                           style={{ 
                             background: intensity > 0.7 ? '#39d353' : 
                                        intensity > 0.4 ? '#26a641' : 
-                                       intensity > 0.1 ? '#006d32' : 
+                                       intensity > 0.15 ? '#006d32' : 
+                                       intensity > 0.05 ? '#0e4429' :
                                        'rgba(255,255,255,0.05)'
                           }}
                         />
@@ -542,8 +553,8 @@ const ProblemSolvingStats = () => {
                 ))}
               </div>
               <div className="heatmap-months">
-                {['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan'].map(m => (
-                  <span key={m}>{m}</span>
+                {['Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'].map((m, i) => (
+                  <span key={`${m}-${i}`}>{m}</span>
                 ))}
               </div>
             </div>

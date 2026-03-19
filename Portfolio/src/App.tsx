@@ -8,6 +8,11 @@ import EducationSection from './components/EducationSection'
 import TypingAnimation from './components/TypingAnimation'
 import robosustLogo from './assets/robosust-logo.png'
 import copernicusLogo from './assets/copernicus-logo.png'
+import sustverseBanner from './assets/sustverse-banner.png'
+import coseismicBanner from './assets/coseismic-banner.png'
+import trafficBanner from './assets/traffic-banner.png'
+import sportsunityBanner from './assets/sportsunity-banner.png'
+import hateSpeechBanner from './assets/hate-speech-banner.png'
 
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -248,6 +253,9 @@ function App() {
           <h2 className="section-title">Featured Projects</h2>
           <div className="projects-grid">
             <div className="project-card card animate-fade-in-up">
+              <div className="project-image-wrapper">
+                <img src={sustverseBanner} alt="SUSTverse" className="project-image" />
+              </div>
               <div className="project-header">
                 <h3>SUSTverse</h3>
                 <a href="https://github.com/KhalidBinSelim/SUSTverse" target="_blank" rel="noopener noreferrer" className="github-link">
@@ -275,6 +283,38 @@ function App() {
             </div>
 
             <div className="project-card card animate-fade-in-up" style={{animationDelay: '0.1s'}}>
+              <div className="project-image-wrapper">
+                <img src={hateSpeechBanner} alt="Bangla Hate Speech Intensity Classification" className="project-image" />
+              </div>
+              <div className="project-header">
+                <h3>Bangla Hate Speech Intensity Classification</h3>
+                <a href="https://github.com/KhalidBinSelim/Bangla-Hate-Speech-Intensity-Classification" target="_blank" rel="noopener noreferrer" className="github-link">
+                  <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                  </svg>
+                </a>
+              </div>
+              <p className="project-date">2025</p>
+              <p className="project-description">
+                <strong>First-of-its-kind</strong> Bangla hate speech intensity classification system with a custom-annotated dataset and multiple ML/DL models.
+              </p>
+              <div className="tech-stack">
+                <span className="badge">Pandas</span>
+                <span className="badge">Scikit-learn</span>
+                <span className="badge">Transformers</span>
+                <span className="badge">Jupyter</span>
+              </div>
+              <ul className="project-highlights">
+                <li><strong>11,000+ samples</strong> annotated across 6 severity levels</li>
+                <li><strong>BanglaBERT & mBERT</strong> transformer models trained</li>
+                <li><strong>Logistic Regression</strong> baseline for comparison</li>
+              </ul>
+            </div>
+
+            <div className="project-card card animate-fade-in-up" style={{animationDelay: '0.2s'}}>
+              <div className="project-image-wrapper">
+                <img src={coseismicBanner} alt="CoSeismic" className="project-image" />
+              </div>
               <div className="project-header">
                 <h3>CoSeismic</h3>
                 <a href="https://github.com/KhalidBinSelim/CoSeismic" target="_blank" rel="noopener noreferrer" className="github-link">
@@ -301,7 +341,10 @@ function App() {
               </ul>
             </div>
 
-            <div className="project-card card animate-fade-in-up" style={{animationDelay: '0.2s'}}>
+            <div className="project-card card animate-fade-in-up" style={{animationDelay: '0.3s'}}>
+              <div className="project-image-wrapper">
+                <img src={trafficBanner} alt="Traffic Rule Violation Detection" className="project-image" />
+              </div>
               <div className="project-header">
                 <h3>Traffic Rule Violation Detection System</h3>
                 <a href="https://github.com/KhalidBinSelim/Traffic-Rule-Violation-Detection-System" target="_blank" rel="noopener noreferrer" className="github-link">
@@ -326,7 +369,10 @@ function App() {
               </ul>
             </div>
 
-            <div className="project-card card animate-fade-in-up" style={{animationDelay: '0.3s'}}>
+            <div className="project-card card animate-fade-in-up" style={{animationDelay: '0.4s'}}>
+              <div className="project-image-wrapper">
+                <img src={sportsunityBanner} alt="SportsUnity" className="project-image" />
+              </div>
               <div className="project-header">
                 <h3>SportsUnity - Campus Sports Management App</h3>
                 <a href="https://github.com/KhalidBinSelim/SportsUnity" target="_blank" rel="noopener noreferrer" className="github-link">
